@@ -11,6 +11,8 @@ import listIcon from './assets/list.png';
 
 const Sidebar = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [activeChatId, setActiveChatId] = useState(1);
+
 
   const navItems = [
     { label: "Chat History", icon: chatIcon },
@@ -18,6 +20,15 @@ const Sidebar = () => {
     { label: "Guided Experience", icon: guidedIcon },
     { label: "Tools", icon: toolsIcon },
     { label: "Tutorials", icon: tutorialsIcon },
+  ];
+
+
+  const mockChats = [
+    { id: 1, title: "Agile Frameworks Exploration" },
+    { id: 2, title: "Scope Change Management Guide" },
+    { id: 3, title: "Risk Identification Method" },
+    { id: 4, title: "Stakeholder Plan V2" },
+    { id: 5, title: "New Project Intro" },
   ];
 
   return (
@@ -42,7 +53,7 @@ const Sidebar = () => {
             </button>
           ))}
 
-          {/* --- НОВА КНОПКА NEW CHAT (Тільки для Tablet/Phone) --- */}
+          {/* --- NEW CHAT (Тільки для Tablet/Phone) --- */}
           <button className="nav-item tablet-new-chat-btn">
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
@@ -61,17 +72,36 @@ const Sidebar = () => {
             </svg>
             <span className="nav-label">New Chat</span>
           </button>
-          
         </div>
         
-        {/* Аватар знизу */}
+
         <button className="nav-item" style={{ backgroundColor: 'transparent' }}>
           <img src={accountIcon} alt="Profile" className="avatar-icon" />
         </button>
       </div>
 
-      {/* --- ПРАВА ПАНЕЛЬ --- */}
+      {/* --- Історія чатів --- */}
       <div className="sidebar-actions">
+        
+
+        <div className="chat-history-container">
+          <div className="chat-history-header">Recent Chats</div>
+          
+          <div className="chat-history-list">
+            {mockChats.map((chat) => (
+              <div 
+                key={chat.id} 
+                className={`chat-history-item ${chat.id === activeChatId ? 'active' : ''}`}
+                onClick={() => setActiveChatId(chat.id)}
+                title={chat.title}
+              >
+                {chat.title}
+              </div>
+            ))}
+          </div>
+        </div>
+
+
         <button className="btn-new-chat">New Chat</button>
       </div>
     </aside>
