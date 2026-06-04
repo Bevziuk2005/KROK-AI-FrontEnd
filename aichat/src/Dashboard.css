@@ -2,7 +2,6 @@
    БАЗОВІ СТИЛІ (ДЛЯ ПК)
 ========================================= */
 
-/* Базове скидання стилів */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,7 +13,6 @@ body {
   background-color: #fafafa;
 }
 
-/* Головний контейнер */
 .dashboard-layout {
   display: flex;
   height: 100vh;
@@ -29,7 +27,6 @@ body {
   height: 100%;
 }
 
-/* Вузька панель навігації (зліва) */
 .sidebar-nav {
   width: 80px;
   background-color: #082a4e;
@@ -62,7 +59,6 @@ body {
   font-size: 10px;
   text-align: center;
   cursor: pointer;
-
   border: none;
   padding: 8px 0;
 }
@@ -70,7 +66,7 @@ body {
 .nav-item:hover { color: white; }
 .nav-item.active { color: white; }
 
-
+/* Права частина сайдбару */
 .sidebar-actions {
   width: 200px;
   padding: 24px 16px 16px 16px;
@@ -88,7 +84,6 @@ body {
   margin-bottom: 16px;
 }
 
-
 .chat-history-header {
   color: #7ba4cc;
   font-size: 11px;
@@ -99,7 +94,6 @@ body {
   padding-left: 8px;
 }
 
-
 .chat-history-list {
   display: flex;
   flex-direction: column;
@@ -108,7 +102,6 @@ body {
   flex: 1;
 }
 
-
 .chat-history-item {
   color: #cbd5e0;
   font-size: 13px;
@@ -116,19 +109,15 @@ body {
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
-  
-
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-
 .chat-history-item:hover {
   background-color: rgba(255, 255, 255, 0.05);
   color: white;
 }
-
 
 .chat-history-item.active {
   background-color: rgba(20, 101, 177, 0.4);
@@ -150,6 +139,7 @@ body {
   transition: background-color 0.2s;
   width: 100%;
 }
+
 .btn-new-chat:hover { background-color: #1a73d3; }
 
 /* --- ОСНОВНИЙ КОНТЕНТ --- */
@@ -175,7 +165,6 @@ body {
   cursor: pointer;
 }
 
-/* Центральна секція */
 .center-wrapper {
   flex: 1;
   display: flex;
@@ -188,259 +177,350 @@ body {
   padding-bottom: 80px;
 }
 
-.welcome-header {
-  text-align: center;
-  margin-bottom: 40px;
+.welcome-header { 
+  text-align: center; 
+  margin-bottom: 40px; 
 }
 
-.welcome-header h1 {
-  font-size: 32px;
+.welcome-header h1 { 
+  font-size: 32px; 
   color: #2d3748;
-  margin-bottom: 8px;
-  font-weight: 600;
+   margin-bottom: 8px; 
+  font-weight: 600; 
 }
 
 .welcome-header p {
-  font-size: 18px;
-  color: #718096;
+  font-size: 18px; 
+  color: #718096; 
 }
 
-/* Картки */
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  width: 100%;
+.cards-grid { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px; 
+  width: 100%; 
 }
 
 .card {
-  background: white;
-  border: 1px solid #edf2f7;
+  background: white; 
+  border: 1px solid #edf2f7; 
   border-radius: 12px;
-  padding: 20px;
-  height: 160px;
-  display: flex;
+  padding: 20px; 
+  height: 160px; 
+  display: flex; 
   flex-direction: column;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05); 
+  cursor: pointer; 
   transition: box-shadow 0.2s ease;
 }
 
-.card:hover { box-shadow: 0 4px 25px rgba(0,0,0,0.1); }
-.card h3 { font-size: 14px; color: #2d3748; margin-bottom: 8px; }
-.card p { font-size: 12px; color: #a0aec0; line-height: 1.5; }
+.card:hover { 
+  box-shadow: 0 4px 25px rgba(0,0,0,0.1); 
+}
 
-/* --- ЧАТ БАР --- */
+.card h3 { font-size: 14px; 
+  color: #2d3748; 
+  margin-bottom: 8px; 
+}
+
+.card p { 
+  font-size: 12px; 
+  color: #a0aec0; 
+  line-height: 1.5; 
+}
+
 .chat-wrapper {
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
+  position: absolute; 
+  bottom: 32px; 
+  left: 50%; 
   transform: translateX(-50%);
-  width: 100%;
-  max-width: 800px;
+  width: 100%; 
+  max-width: 800px; 
   padding: 0 16px;
 }
 
 .chat-input-container {
-  display: flex;
-  align-items: center;
-  background: white;
+  display: flex; 
+  align-items: center; 
+  background: white; 
   border-radius: 32px;
-  border: 1px solid #e2e8f0;
-  padding: 12px 24px;
+  border: 1px solid #e2e8f0; 
+  padding: 12px 24px; 
   box-shadow: 0 10px 40px rgba(0,0,0,0.08);
 }
 
-.chat-input {
-  flex: 1;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  padding: 0 12px;
-  color: #2d3748;
+.chat-input { 
+  flex: 1; 
+  border: none; 
+  outline: none; 
+  font-size: 16px; 
+  padding: 0 12px; 
+  color: #2d3748; 
 }
 
-.chat-input::placeholder { color: #a0aec0; }
+.chat-input::placeholder { 
+  color: #a0aec0; 
+}
 
-/* =========================================
-   СТИЛІ ДЛЯ ІКОНОК (IMG)
-========================================= */
+/* СТИЛІ ДЛЯ ІКОНОК */
 .nav-icon { 
   width: 24px; 
   height: 24px; 
-  margin-bottom: 4px;
-  object-fit: contain;
+  margin-bottom: 4px; 
+  object-fit: contain; 
 }
 
 .avatar-icon { 
   width: 32px; 
   height: 32px; 
-  border-radius: 50%;
-  object-fit: cover;
+  border-radius: 50%; 
+  object-fit: cover; 
 }
 
 .help-icon { 
-      background-color: #0C3B67;
-    border-radius: 20px;
-  width: 40px;
-  height: 40px;
-  padding: 8px;
-  margin-bottom: 4px;
-  object-fit: contain;
-}
+  background-color: #0C3B67;
+  border-radius: 20px;
+  width: 40px; 
+  height: 40px; 
+  padding: 8px; 
+  margin-bottom: 4px; 
+  object-fit: contain; 
+  }
 
 .chat-action-icon { 
   width: 24px; 
   height: 24px; 
-  cursor: pointer;
-  object-fit: contain;
-  transition: opacity 0.2s ease;
+  cursor: pointer; 
+  object-fit: contain; 
+  transition: opacity 0.2s ease; 
 }
 
-.chat-action-icon:hover {
-  opacity: 0.7;
-}
-
-.icon-placeholder-dark {
-  background-color: #cbd5e0; 
+.chat-action-icon:hover { 
+  opacity: 0.7; 
 }
 
 .menu-icon {
-    background-color: #0C3B67;
-    border-radius: 20px;
-  width: 40px;
+  background-color: #0C3B67; 
+  border-radius: 20px; 
+  width: 40px; 
   height: 40px;
-  padding: 4px;
-  cursor: pointer;
-  object-fit: contain;
+  padding: 4px; 
+  cursor: pointer; 
+  object-fit: contain; 
   transition: opacity 0.2s ease;
 }
-
-.menu-icon:hover {
-  opacity: 0.7;
+.menu-icon:hover { 
+  opacity: 0.7; 
 }
 
 /* =========================================
-   АДАПТИВНІСТЬ (MEDIA QUERIES)
+   ДОДАТКОВІ КЛАСИ ДЛЯ БУРГЕР-МЕНЮ
 ========================================= */
 
-
-.mobile-header { display: none; }
-.tablet-menu-btn { display: none; }
-
-.nav-item.tablet-new-chat-btn {
-    display: none;
+.mobile-nav-list { 
+  display: none; 
 }
+
+.overlay {
+  position: fixed; 
+  top: 0; left: 0; 
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4); 
+  z-index: 90; 
+}
+.close-menu-btn { 
+  display: none; 
+}
+
+/* =========================================
+   АДАПТИВ
+========================================= */
+.mobile-header { 
+  display: none; 
+}
+.tablet-menu-btn { 
+  display: none; 
+}
+.nav-item.tablet-new-chat-btn { 
+  display: none; 
+}
+
+/* ВИЇЗНЕ МЕНЮ ДЛЯ ВСІХ МОБІЛЬНИХ ПРИСТРОЇВ (до 1023px) */
+@media (max-width: 1023px) {
+  .sidebar-actions {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 280px;
+    max-width: 80vw;
+    z-index: 100;
+    background-color: #0a3663;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.3);
+  }
+
+  .sidebar-actions.mobile-open {
+    transform: translateX(0);
+  }
+
+  .close-menu-btn {
+    display: block;
+    background: transparent;
+    border: none;
+    color: #a0aec0;
+    font-size: 24px;
+    align-self: flex-end;
+    cursor: pointer;
+    margin-bottom: 8px;
+    transition: color 0.2s;
+  }
+
+  .close-menu-btn:hover {
+    color: white;
+  }
+
+
+  .mobile-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+
+  .mobile-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    color: #a0aec0;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+  }
+
+  .mobile-nav-item.active {
+    background-color: #1465B1;
+    color: white;
+    font-weight: 500;
+  }
+
+  .mobile-nav-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  .mobile-nav-divider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 8px 0;
+    width: 100%;
+  }
+}
+
 /* -----------------------------------------
    TABLET (від 768px до 1023px)
 ----------------------------------------- */
 @media (min-width: 768px) and (max-width: 1023px) {
-
-  .sidebar-actions {
-    display: none;
-  }
-  
-
-  .sidebar-nav {
-    width: 120px;
+  .sidebar-nav { 
+    width: 120px; 
   }
   
   .nav-item {
-    width: 90px;
-    height: auto;
-    min-height: 70px;
+    width: 90px; 
+    height: auto; 
+    min-height: 70px; 
     padding: 10px 4px;
-    background-color: #1465B1;
-    border-radius: 12px;
-    font-size: 12px;
+    background-color: #1465B1; 
+    border-radius: 12px; 
+    font-size: 12px; 
     gap: 6px;
   }
 
-  .nav-label {
-    display: block;
-    line-height: 1.2;
-    word-wrap: break-word;
+  .nav-label { 
+    display: block; 
+    line-height: 1.2; 
+    word-wrap: break-word; 
   }
 
   .tablet-menu-btn {
-    display: block;
-    position: absolute;
-    top: 24px;
-    left: 24px;
+    display: block; 
+    position: absolute; 
+    top: 24px; 
+    left: 24px; 
     cursor: pointer;
   }
 
-  .cards-grid {
-    grid-template-columns: 1fr;
-    max-width: 350px;
-    margin: 0 auto;
+  .cards-grid { 
+    grid-template-columns: 1fr; 
+    max-width: 350px; margin: 0 auto; 
   }
-
-  .nav-item.tablet-new-chat-btn {
-    display: flex;
+  .nav-item.tablet-new-chat-btn { 
+    display: flex; 
   }
 }
-
 
 /* -----------------------------------------
    PHONE (до 767px)
 ----------------------------------------- */
 @media (max-width: 767px) {
 
-  .dashboard-layout {
-    flex-direction: column;
+  .dashboard-layout { 
+    flex-direction: column; 
   }
 
-
-  .sidebar-container {
-    height: 70px;
-    width: 100%;
+  .sidebar-container { 
+    height: 70px; 
+    width: 100%; 
   }
-
-  .sidebar-nav, 
-  .sidebar-actions {
-    display: none;
-  }
+  
+  .sidebar-nav { display: none; }
 
   .mobile-header {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+    display: flex; 
+    width: 100%; 
+    justify-content: space-between; 
     align-items: center;
-    padding: 0 24px;
+    padding: 0 24px; 
     background-color: #082a4e;
   }
 
-  /* Основний контент */
-  .main-content {
-    padding: 16px;
+  .main-content { 
+    padding: 16px; 
   }
 
-  .help-btn, 
-  .tablet-menu-btn {
-    display: none;
+  .help-btn, .tablet-menu-btn { 
+    display: none; 
   }
 
-  .welcome-header h1 {
-    font-size: 26px;
-    margin-bottom: 4px;
-  }
-  
-  .welcome-header p {
-    font-size: 16px;
+  .welcome-header h1 { 
+    font-size: 26px; 
+    margin-bottom: 4px; 
   }
 
-  .cards-grid {
-    display: none;
+  .welcome-header p { 
+    font-size: 16px; 
   }
 
-  .chat-wrapper {
-    bottom: 24px;
-    padding: 0 16px;
+  .cards-grid { 
+    display: none; 
+  }
+  .chat-wrapper { 
+    bottom: 24px; 
+    padding: 0 16px; 
   }
 
-  .chat-input-container {
-    padding: 10px 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  .chat-input-container { 
+    padding: 10px 20px; 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
   }
 }

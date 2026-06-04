@@ -1,12 +1,12 @@
 import React from 'react';
 
-// Імпортуємо іконки з папки assets
+
 import helpIcon from './assets/Help_circle.png';
 import attachIcon from './assets/attach_file.png';
 import sendIcon from './assets/Send.png';
-import listIcon from './assets/list.png'; // <--- ДОДАНО ІКОНКУ СПИСКУ
+import listIcon from './assets/list.png';
 
-const MainContent = () => {
+const MainContent = ({ toggleMenu }) => {
   const quickActions = [
     {
       title: "Scope Change Template",
@@ -26,7 +26,7 @@ const MainContent = () => {
     <main className="main-content">
       
 
-      <div className="tablet-menu-btn">
+      <div className="tablet-menu-btn" onClick={toggleMenu}>
         <img src={listIcon} alt="Menu" className="menu-icon" />
       </div>
 
