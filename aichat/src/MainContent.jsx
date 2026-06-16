@@ -8,6 +8,50 @@ import attachIcon from './assets/attach_file.png';
 import sendIcon from './assets/Send.png';
 import listIcon from './assets/list.png';
 
+/* =========================================
+   ФУНКЦІЇ ДЛЯ ОБРОБКИ MARKDOWN ДЕМО-ВІДПОВІДЕЙ
+========================================= */
+const parseBold = (text) => {
+  const parts = text.split(/\*\*([\s\S]*?)\*\*/g);
+  return parts.map((part, i) => i % 2 === 1 ? <strong key={i} style={{ fontWeight: '700', color: '#1a202c' }}>{part}</strong> : part);
+};
+
+const renderMarkdown = (text) => {
+  if (!text) return '';
+  
+  return text.split('\n').map((line, index) => {
+    const trimmed = line.trim();
+    
+    // Обробка заголовків ###
+    if (trimmed.startsWith('###')) {
+      return (
+        <h3 key={index} style={{ margin: '16px 0 8px 0', color: '#0a3663', fontSize: '18px', fontWeight: '700' }}>
+          {trimmed.replace('###', '').trim()}
+        </h3>
+      );
+    }
+    
+    // Обробка списків *
+    if (trimmed.startsWith('*')) {
+      return (
+        <li key={index} style={{ marginLeft: '20px', marginBottom: '6px', listStyleType: 'disc' }}>
+          {parseBold(trimmed.replace('*', '').trim())}
+        </li>
+      );
+    }
+    
+    // Звичайні абзаци
+    return (
+      <p key={index} style={{ margin: '6px 0', lineHeight: '1.6' }}>
+        {parseBold(line)}
+      </p>
+    );
+  });
+};
+
+/* =========================================
+   ГОЛОВНИЙ КОМПОНЕНТ
+========================================= */
 const MainContent = ({ toggleMenu, activeChatId }) => {
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   
@@ -22,7 +66,6 @@ const MainContent = ({ toggleMenu, activeChatId }) => {
   const [isUploadingFile, setIsUploadingFile] = useState(false);
 
   const messagesEndRef = useRef(null);
-
   const fileInputRef = useRef(null);
 
   const quickActions = [
@@ -64,12 +107,10 @@ const MainContent = ({ toggleMenu, activeChatId }) => {
     setIsUploadingFile(true);
 
     try {
-
       const uploadedDoc = await chatService.uploadDocument(activeChatId, file);
       setAttachedFile(uploadedDoc);
     } catch (error) {
       setFileError(error.message || 'Помилка завантаження файлу');
-
       setTimeout(() => setFileError(''), 4000); 
     } finally {
       setIsUploadingFile(false);
@@ -93,7 +134,6 @@ const MainContent = ({ toggleMenu, activeChatId }) => {
     setInputValue('');
     setAttachedFile(null);
     setIsSending(true);
-
 
     const temporaryUserMsg = {
       id: 'temp-user-' + Date.now(),
@@ -153,7 +193,6 @@ const MainContent = ({ toggleMenu, activeChatId }) => {
                     <div className="message-sender-title">
                       {msg.role === 'user' ? 'Ви' : 'КРОК AI'}
                     </div>
-                    
 
                     {msg.attached_file_title && (
                       <div className="msg-attached-file-badge">
@@ -161,7 +200,9 @@ const MainContent = ({ toggleMenu, activeChatId }) => {
                       </div>
                     )}
                     
-                    <div className="message-text-content">{msg.content}</div>
+                    <div className="message-text-content">
+                      {msg.role === 'assistant' ? renderMarkdown(msg.content) : msg.content}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -180,8 +221,6 @@ const MainContent = ({ toggleMenu, activeChatId }) => {
 
         {/* --- ЧАТ-БАР З ПІДТРИМКОЮ ФАЙЛІВ --- */}
         <div className="chat-wrapper">
-          
-
           <input 
             type="file" 
             ref={fileInputRef} 
@@ -190,11 +229,9 @@ const MainContent = ({ toggleMenu, activeChatId }) => {
             style={{ display: 'none' }} 
           />
 
-
           {fileError && <div className="file-status-popup error">{fileError}</div>}
           {isUploadingFile && <div className="file-status-popup uploading">⚡ Обробка та генерація ембедінгів документа...</div>}
           
-
           {attachedFile && (
             <div className="attached-file-preview">
               <span>📎 {attachedFile.title} (Готовий до аналізу)</span>

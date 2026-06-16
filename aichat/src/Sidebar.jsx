@@ -26,6 +26,7 @@ const Sidebar = ({ isMenuOpen, toggleMenu, activeChatId, setActiveChatId }) => {
     { label: "Посібники", icon: tutorialsIcon },
   ];
 
+
   const loadChats = async () => {
     setLoading(true);
     try {

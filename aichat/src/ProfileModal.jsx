@@ -1,7 +1,20 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProfileModal = ({ isOpen, onClose, accountIcon }) => {
+  const navigate = useNavigate();
+  
   if (!isOpen) return null;
+
+
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    
+    onClose();
+    
+    navigate('/login');
+  };
 
   return (
     <div className="profile-modal-overlay" onClick={onClose}>
@@ -12,7 +25,11 @@ const ProfileModal = ({ isOpen, onClose, accountIcon }) => {
         
         <div className="profile-modal-actions">
           <button className="profile-modal-btn outline">Змінити аккаунт</button>
-          <button className="profile-modal-btn danger">Вийти з акаунту</button>
+          
+          {/* Кнопка виходу */}
+          <button className="profile-modal-btn danger" onClick={handleLogout}>
+            Вийти з акаунту
+          </button>
         </div>
       </div>
     </div>

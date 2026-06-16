@@ -284,6 +284,14 @@
   overflow-y: auto;
   padding-top: 80px; 
   padding-bottom: 120px;
+
+  scrollbar-width: none; 
+  
+  -ms-overflow-style: none; 
+}
+
+.chat-container-core::-webkit-scrollbar {
+  display: none;
 }
 
 .chat-status-info {
