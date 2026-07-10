@@ -12,7 +12,7 @@ const Login = () => {
     setLoading(true);
     setError('');
     try {
-      // 1. Пробуємо зробити реальний запит до сервера
+
       const response = await api.post('/api/v1/auth/login/', {
         redirect: `${window.location.origin}/auth/callback`
       });
@@ -20,23 +20,22 @@ const Login = () => {
       if (response.data?.auth_url) {
         window.location.href = response.data.auth_url;
       } else {
-        // Якщо відповідь дивна, вмикаємо режим розробки
+
         triggerDevMode();
       }
     } catch (err) {
-      console.warn("Бекенд повернув помилку. Вмикаємо режим обходу для розробки...");
-      // 2. Якщо сервер лежить (500 помилка) — запускаємо обхідний шлях
+      console.warn("Бекенд повернув помилку. Ввімкнуто режим обходу для розробки...");
+
       triggerDevMode();
     } finally {
       setLoading(false);
     }
   };
 
-  // Функція, яка створює локальні фейкові токени для розробки
+
   const triggerDevMode = () => {
     localStorage.setItem('access_token', 'mock_development_access_token');
     localStorage.setItem('refresh_token', 'mock_development_refresh_token');
-    // Миттєво перенаправляємо на головну сторінку з чатами
     navigate('/');
   };
 
