@@ -17,7 +17,7 @@ const Login = () => {
       }
     } catch (err) {
       console.error(err);
-      setError('Помилка з\'єднання з сервером. Зверніться до адміністратора (Помилка 500).');
+      setError('Помилка з\'єднання з сервером (Помилка 500).');
     } finally {
       setLoading(false);
     }

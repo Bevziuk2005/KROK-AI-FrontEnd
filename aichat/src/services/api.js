@@ -86,7 +86,7 @@ export const chatService = {
 
   async getChats() {
     const response = await api.get('/api/v1/chats/?page_size=100');
-    return response.data.results; // Бекенд повертає пагінацію, список лежить в results
+    return response.data.results;
   },
 
 
