@@ -55,7 +55,17 @@ export const chatService = {
   
   async getLoginUrl() {
     const response = await api.post('/api/v1/auth/login/', {
-      redirect: window.location.origin
+
+      redirect: `${window.location.origin}/auth/callback` 
+    });
+    return response.data;
+  },
+
+  async handleCallback(code) {
+    const redirectUri = `${window.location.origin}/auth/callback`;
+    const response = await api.post('/api/v1/auth/callback/', {
+      code: code,
+      redirect: redirectUri
     });
     return response.data;
   },
