@@ -49,37 +49,39 @@ api.interceptors.response.use(
 /* =========================================
   ІНТЕГРАЦІЯ З БЕКЕНДОМ
 ========================================= */
+
+const getRedirectUri = () => {
+
+  const basename = import.meta.env.MODE === 'production' ? '/KROK-AI-FrontEnd' : '';
+  return `${window.location.origin}${basename}/auth/callback`;
+};
+
 export const chatService = {
   
   // --- АУТЕНТИФІКАЦІЯ ---
   
   async getLoginUrl() {
     const response = await api.post('/api/v1/auth/login/', {
-
-      redirect: `${window.location.origin}/auth/callback` 
+      redirect: getRedirectUri()
     });
     return response.data;
   },
 
   async handleCallback(code) {
-    const redirectUri = `${window.location.origin}/auth/callback`;
     const response = await api.post('/api/v1/auth/callback/', {
       code: code,
-      redirect: redirectUri
+      redirect: getRedirectUri()
     });
     return response.data;
   },
 
-
   async logout() {
     const refresh = localStorage.getItem('refresh_token');
     try {
-
       await api.post('/api/v1/auth/logout/', { refresh_token: refresh });
     } catch (err) {
       console.error("Серверна помилка при logout, очищення локальних даних...", err);
     } finally {
-
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
     }
@@ -90,15 +92,12 @@ export const chatService = {
     return response.data;
   },
 
-
   // --- РОБОТА З ЧАТАМИ ---
-
 
   async getChats() {
     const response = await api.get('/api/v1/chats/?page_size=100');
     return response.data.results;
   },
-
 
   async createChat(title) {
     const response = await api.post('/api/v1/chats/', {
@@ -108,12 +107,10 @@ export const chatService = {
     return response.data;
   },
 
-
   async getChatMessages(chatId) {
     const response = await api.get(`/api/v1/chats/${chatId}/messages/`);
-    return response.data.results; // Список повідомлень лежить в results
+    return response.data.results;
   },
-
 
   async sendMessage(chatId, content) {
     const response = await api.post(`/api/v1/chats/${chatId}/messages/`, {
@@ -123,14 +120,12 @@ export const chatService = {
     return response.data;
   },
 
-
   // --- РОБОТА З ФАЙЛАМИ ТА RAG ПОШУКОМ ---
 
   async getDocuments() {
     const response = await api.get('/api/v1/files/');
     return response.data.results;
   },
-
 
   async uploadDocument(chatId, file) {
     const formData = new FormData();
