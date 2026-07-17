@@ -17,7 +17,7 @@ function App() {
     <Routes>
       <Route path="/login" element={<Login />} />
       
-      {/* 2. Додаємо публічний роут для колбеку */}
+
       <Route path="/auth/callback" element={<AuthCallback />} />
       
       <Route 
