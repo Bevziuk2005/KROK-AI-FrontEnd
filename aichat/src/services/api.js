@@ -50,10 +50,9 @@ api.interceptors.response.use(
   ІНТЕГРАЦІЯ З БЕКЕНДОМ
 ========================================= */
 
-const getRedirectUri = () => {
-
+const getFinalRedirectUri = () => {
   const basename = import.meta.env.MODE === 'production' ? '/KROK-AI-FrontEnd' : '';
-  return `${window.location.origin}${basename}/auth/callback`;
+  return `${window.location.origin}${basename}/`; 
 };
 
 export const chatService = {
@@ -62,7 +61,7 @@ export const chatService = {
   
   async getLoginUrl() {
     const response = await api.post('/api/v1/auth/login/', {
-      redirect: getRedirectUri()
+      redirect: getFinalRedirectUri() 
     });
     return response.data;
   },
@@ -70,7 +69,7 @@ export const chatService = {
   async handleCallback(code) {
     const response = await api.post('/api/v1/auth/callback/', {
       code: code,
-      redirect: getRedirectUri()
+      redirect: getFinalRedirectUri()
     });
     return response.data;
   },
